@@ -1,0 +1,21 @@
+0. sudo apt-get update && sudo rpi-update
+1. sudo raspi-config
+2. enable VNC, enable CAMERA
+3. test camera using camera_test.py or raspistill  -o Destktop/image.jpg
+4. sudo apt-get install vim
+5. sudo vim /etc/dhcpcd.conf 
+
+interface eth0
+
+interface eth0
+
+static ip_address=192.168.0.10/24
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1
+
+interface wlan0
+static ip_address=192.168.0.200/24
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1
+
+
