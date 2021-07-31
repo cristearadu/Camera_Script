@@ -1,11 +1,12 @@
 import time
 import threading
 import os
+import test_camera
 from logger import logger
 from flask import Flask, render_template, Response, request
 from camera_stream import VideoCamera
-import test_camera
 from unittest import TextTestRunner, TestLoader
+from network_data import NetworkData
 
 # App Globals (do not edit)
 app = Flask(__name__)
@@ -39,54 +40,11 @@ def run_test():
     test_suite =  TestLoader().loadTestsFromModule(test_camera)
     TextTestRunner(verbosity=2).run(test_suite)
 
-def get_private_ip():
-    """
-    Function to get the device's private IP.
-    """
-    import random
-    import socket
-    import netifaces as ni
-    from ipaddress import ip_address
-    
-    ip_interfaces = ni.interfaces()
-    ip_list = []
-    ip = ""
-    reason_invalid = "Invalid IP address"
-    reason_loopback = "Loopback IP address"
-    reason_public = "Public IP address"
-    
-    for interface in ip_interfaces:
-        if ni.AF_INET in ni.ifaddresses(interface):
-            ip_list.append(ni.ifaddresses(interface)[ni.AF_INET][0]['addr'])
-    
-    for element in ip_list:
-        reason_dict = {}
-        
-        try:
-            streamable = True if (ip_address(element).is_private) else False
-            
-            if ip_address(element).is_loopback:
-                streamable = False
-    
-        except ValueError:
-            logger.error(f"Removing IP address, reason: {reason_invalid} {element}")
-            streamable = False
-            ip_list.remove(element)
-        
-
-        if not streamable:
-            logger.info(f"Removing IP: {element} from list")
-            ip_list.remove(element)
-    
-        logger.info(f"Found valid and private IP address: {element}")
-    
-    ip = random.choice(ip_list)
-    logger.info(f"The IP selected for stream is: {element}")
-    return ip
 
 if __name__ == '__main__':
-    run_test()
-    private_ip = get_private_ip()
+    
+    #run_test()
+    network_data = NetworkData()
+    private_ip = network_data.get_private_ip()
     camera_configuration(app)
     app.run(host=private_ip, debug=False)
-    
