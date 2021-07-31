@@ -35,7 +35,7 @@ def camera_configuration(app):
 
 def run_test():
     """
-    Function to run unit_test for camera
+    Function to run unit_test for camera. First verification in our process
     """
     test_suite =  TestLoader().loadTestsFromModule(test_camera)
     TextTestRunner(verbosity=2).run(test_suite)
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     
     #run_test()
     network_data = NetworkData()
+    network_data.add_static_ip(eth=True, wlan=True)
     private_ip = network_data.get_private_ip()
-    camera_configuration(app)
-    app.run(host=private_ip, debug=False)
+    #camera_configuration(app)
+    #app.run(host=private_ip, debug=False)
