@@ -45,7 +45,7 @@ if __name__ == '__main__':
     
     #run_test()
     network_data = NetworkData()
-    network_data.add_static_ip(eth=True, wlan=True)
     private_ip = network_data.get_private_ip()
-    #camera_configuration(app)
-    #app.run(host=private_ip, debug=False)
+    camera_configuration(app)
+    import pdb; pdb.set_trace()
+    app.run(host=private_ip, debug=False)
