@@ -55,12 +55,10 @@ class NetworkData():
                     logger.info(f"Removing IP address \'{ip_addr}\' from list, reason: {reason}")
                     network_dict_final.pop(interf)
         
-        logger.info(f"Found the following IPs for the server: {network_dict.values()}")
+        logger.info(f"Found the following IPs for the server: {network_dict_final.values()}")
         interface = random.choice(list(network_dict_final))
         self._ip = network_dict_final[interface]
         
         logger.info(f"The IP selected for stream is: \'{self._ip}\'. The inferface is: {interface}")
         
         return self._ip
-        
-

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 body {
   margin: 0;
@@ -51,10 +51,6 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.lights-button{
-	float: right;
-}
-
 i.fa {
   display: inline-block;
   border-radius: 60px;
@@ -71,15 +67,7 @@ img {
     width: 35%
 }
 
-button {
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-}
-	
+
 //CSS
 .camera-bg {
   position: fixed; 
@@ -101,7 +89,7 @@ button {
 
 }
 
-.top-right-logo {
+.top-title {
   position: absolute;
   top: 3%;
   left: 2%;
@@ -123,9 +111,8 @@ body {
 </style>
 </head>
 
-<title>Make - PiStream</title>
+<title>Security Camera</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <body>
 
@@ -135,42 +122,11 @@ body {
      
 </div>
 
-  <div class="top-right-logo">
-  	<a></a>Raspberry Pi - Camera Stream </a>
+  <div class="top-title">
+  	<a></a>Security Camera - Camera Stream </a>
   </div>
-
-
-<div class="navbar">
-
-    <div class="ignoreCall">
-          <a id=decline class="but_def">
-              <button id="button"> 
-                  <i style="background: red; color: white;" class="fa fa-times fa-2x" aria-hidden="true"></i>
-              </button>
-         </a>       
-    </div>
-
-</div>
-
-
     
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-  
-var button = document.getElementById('button');
-
-button.onclick = function() {
-    var div = document.getElementById('newpost');
-    if (div.style.display !== 'none') {
-        div.style.display = 'none';
-    }
-    else {
-        div.style.display = 'block';
-    }
-};
-   
-</script>
 
 </body>
 </html>

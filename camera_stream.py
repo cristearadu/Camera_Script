@@ -8,20 +8,17 @@ from logger import logger
 class VideoCamera(object):
     def __init__(self, flip = False):
         logger.info("Starting camera streaming..")
-        self.vs = PiVideoStream().start()
-        self.flip = flip
+        self._video_streaming = PiVideoStream().start()
         sleep(2)
 
     def __del__(self):
         logger.info("Stopping camera streaming..")
-        self.vs.stop()
-
-    def flip_if_needed(self, frame):
-        if self.flip:
-            return np.flip(frame, 0)
-        return frame
+        self._video_streaming.stop()
 
     def get_frame(self):
-        frame = self.flip_if_needed(self.vs.read())
-        ret, jpeg = cv2.imencode('.jpg', frame)
-        return jpeg.tobytes()
+        """
+        Function to return the current convertes frames from strings to bytes
+        """
+        frame = self._video_streaming.read()
+        jpeg = cv2.imencode('.jpg', frame)[1].tobytes()
+        return jpeg
