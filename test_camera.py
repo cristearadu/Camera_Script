@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-#DOCUMENTATION: https://picamera.readthedocs.io/en/release-1.13/recipes1.html
-
 import unittest
 import os.path
 from picamera import PiCamera
@@ -11,6 +8,7 @@ OUTPUT_FILE = "/home/pi/Desktop/"
 
 class TestCamera(unittest.TestCase):
     def test_camera(self):
+        logger.info("Running camera test")
         
         date_time = datetime.now()
         date_time = date_time.strftime("%Y-%b-%w-%X")
@@ -28,8 +26,7 @@ class TestCamera(unittest.TestCase):
         camera.stop_preview()
         logger.info("Closing the camera")
         camera.close()
-        
-        #import pdb; pdb.set_trace()
+
         logger.info(f"Searching for file \'{file_name}\'")
         assert os.path.isfile(file_name), f"Failed to find the file at the expected location \'{file_name}\'."
         logger.info(f"Successfully found the file \'{file_name}\'")
