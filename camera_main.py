@@ -10,7 +10,6 @@ from camera_stream import VideoCamera
 from unittest import TextTestRunner, TestLoader
 from network_data import NetworkData
 
-# App Globals (do not edit)
 app = Flask(__name__)
 
 def camera_configuration(app):
@@ -60,10 +59,12 @@ def run_tests():
     return runner.wasSuccessful()
 
 if __name__ == '__main__':
-    
-    assert run_tests(), "The tests have failed. The stream cannot start"
-    network_data = NetworkData()
-    private_ip = network_data.get_private_ip()
-    assert private_ip, "Failed to retrieve an IP"
-    camera_configuration(app)
-    app.run(host=private_ip, debug=False, port=5000)
+    try:
+        assert run_tests(), "The tests have failed. The stream cannot start"
+        network_data = NetworkData()
+        private_ip = network_data.get_private_ip(timeout=180)
+
+        camera_configuration(app)
+        app.run(host=private_ip, debug=False, port=5000)
+    except:
+        import pdb; pdb.set_trace()
