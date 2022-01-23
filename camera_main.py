@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 def camera_configuration(app):
     """
-    Function that creates and streams through the camera
+    Function that creates the camera and streams live video
     """
     pi_camera = VideoCamera()
 
