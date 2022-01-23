@@ -1,15 +1,24 @@
 0. sudo apt-get update && sudo rpi-update
-1. sudo raspi-config
-2. enable VNC, enable CAMERA
-3. test camera using camera_test.py or raspistill  -o Destktop/image.jpg
-4. sudo apt-get install vim
-5. sudo vim /etc/dhcpcd.conf 
+1. sudo raspi-config ---> enable VNC, enable CAMERA
+2. pip3 install -3 requirements.txt
+3. after installing opencv you might need to install some linux packages:
+    sudo apt-get install libcblas-dev
+    sudo apt-get install libhdf5-dev
+    sudo apt-get install libhdf5-serial-dev
+    sudo apt-get install libatlas-base-dev
+    sudo apt-get install libjasper-dev 
+    sudo apt-get install libqtgui4 
+    sudo apt-get install libqt4-test
+
+
+4. test camera using camera_test.py or raspistill  -o Destktop/image.jpg
+5. sudo apt-get install vim
+
+
+BONUS: Make yourself a static IP
 
 interface eth0
-
-interface eth0
-
-static ip_address=192.168.0.10/24
+static ip_address=192.168.0.199/24
 static routers=192.168.0.1
 static domain_name_servers=192.168.0.1
 
@@ -18,4 +27,4 @@ static ip_address=192.168.0.200/24
 static routers=192.168.0.1
 static domain_name_servers=192.168.0.1
 
-
+*Note: the interface names might have different names on your devices. (etho0, wlan0)

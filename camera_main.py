@@ -3,7 +3,6 @@ import threading
 import os
 import unittest
 import test_camera
-import test_internet_conn
 from logger import logger
 from flask import Flask, render_template, Response, request
 from camera_stream import VideoCamera
@@ -30,7 +29,7 @@ def camera_configuration(app):
         """
         Function to get camera frame
         """
-        #get camera frame
+        # get camera frame
         while True:
             frame = camera.get_frame()
             yield (b'--frame\r\n'
@@ -48,7 +47,7 @@ def run_tests():
     """
     Function to run unit_test for camera. First verification in our process
     """
-    classes_to_run = [test_camera, test_internet_conn]
+    classes_to_run = [test_camera]
     suite_list = []
     for test_class in classes_to_run:
         test_suite =  TestLoader().loadTestsFromModule(test_class)
@@ -61,7 +60,7 @@ def run_tests():
 if __name__ == '__main__':
     assert run_tests(), "The tests have failed. The stream cannot start"
     network_data = NetworkData()
-    private_ip = network_data.get_private_ip(timeout=180)
+    private_ip = network_data.get_private_ip()
 
     camera_configuration(app)
     app.run(host=private_ip, debug=False, port=5000)
