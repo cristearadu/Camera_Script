@@ -5,7 +5,7 @@ from time import sleep
 from imutils.video.pivideostream import PiVideoStream
 from logger import logger
 
-class VideoCamera(object):
+class VideoCamera():
     def __init__(self, flip = False):
         logger.info("Starting camera streaming..")
         self._video_streaming = PiVideoStream().start()
@@ -17,7 +17,7 @@ class VideoCamera(object):
 
     def get_frame(self):
         """
-        Function to return the current convertes frames from strings to bytes
+        Function to return the current converted frames from strings to bytes
         """
         frame = self._video_streaming.read()
         jpeg = cv2.imencode('.jpg', frame)[1].tobytes()
