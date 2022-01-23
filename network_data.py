@@ -86,8 +86,9 @@ class NetworkData():
                 streamable = False
                 reason = "invalid IP"
         
-        if not streamable:
-            reason = reason if reason else "public IP"
-            logger.info(f"Removing IP address \'{ip_addr}\' from list, reason: {reason}")
-            network_dict_final.pop(interf)
+            if not streamable:
+                reason = reason if reason else "public IP"
+                logger.info(f"Removing IP address \'{ip_addr}\' from list, reason: {reason}")
+                network_dict_final.pop(interf)
+
         return network_dict_final
