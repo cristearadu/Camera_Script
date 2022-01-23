@@ -30,6 +30,6 @@ class TestCamera(unittest.TestCase):
         logger.info(f"Searching for file \'{file_name}\'")
         assert os.path.isfile(file_name), f"Failed to find the file at the expected location \'{file_name}\'."
         logger.info(f"Successfully found the file \'{file_name}\'")
-        assert os.path.getsize(file_name), f"The file either has been corrupted or the camera is broken. The file exists, but the senzor did not send recieve any file."
+        assert os.path.getsize(file_name), f"The file either has been corrupted or the camera is broken. The file exists, but the senzor did not send any file."
         
         sleep(2)
